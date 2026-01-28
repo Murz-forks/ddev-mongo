@@ -10,7 +10,15 @@ echo "Latest MongoDB version: $LATEST_FULL_VERSION, using GPG key for: $GPG_VERS
 wget -qO - https://www.mongodb.org/static/pgp/server-${GPG_VERSION}.asc | gpg --dearmor -o /usr/share/keyrings/mongodb-server-${GPG_VERSION}.gpg
 # Add repository using the full version
 KEYRING_PATH="/usr/share/keyrings/mongodb-server-${GPG_VERSION}.gpg"
-printf "Types: deb\nURIs: http://repo.mongodb.org/apt/debian\nSuites: bookworm/mongodb-org/${LATEST_FULL_VERSION}\nComponents: main\nSigned-By: ${KEYRING_PATH}\n" > /etc/apt/sources.list.d/mongodb-archive.sources
+
+cat > /etc/apt/sources.list.d/mongodb-archive.sources <<EOT
+Types: deb
+URIs: http://repo.mongodb.org/apt/debian
+Suites: bookworm/mongodb-org/${LATEST_FULL_VERSION}
+Components: main
+Signed-By: ${KEYRING_PATH}
+EOT
+
 (apt-get update || true)
 apt-get install -y mongodb-mongosh mongodb-database-tools
 EOF
