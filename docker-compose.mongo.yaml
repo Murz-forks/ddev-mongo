@@ -2,7 +2,7 @@
 services:
   mongo:
     container_name: ddev-${DDEV_SITENAME}-mongo
-    image: ${MONGO_DOCKER_IMAGE:-mongo:5-focal}
+    image: ${MONGO_DOCKER_IMAGE:-mongo:latest}
     volumes:
       - type: "volume"
         source: mongo
