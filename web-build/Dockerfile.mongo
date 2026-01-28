@@ -7,6 +7,7 @@ RUN \
     # Add MongoDB GPG key using major version
     wget -qO - https://www.mongodb.org/static/pgp/server-${GPG_VERSION}.asc | gpg --dearmor -o /usr/share/keyrings/mongodb-server-${GPG_VERSION}.gpg && \
     # Add repository using the full version
-    echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-${GPG_VERSION}.gpg ] http://repo.mongodb.org/apt/debian $(lsb_release -cs)/mongodb-org/${LATEST_FULL_VERSION} main" > /etc/apt/sources.list.d/mongodb-org-${LATEST_FULL_VERSION}.list && \
+    # Using `bookworm` instead of `$(lsb_release -cs)` because the packages are not yet available for Debian 13 (Trixie)
+    echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-${GPG_VERSION}.gpg ] http://repo.mongodb.org/apt/debian bookworm/mongodb-org/${LATEST_FULL_VERSION} main" > /etc/apt/sources.list.d/mongodb-org-${LATEST_FULL_VERSION}.list && \
     apt-get update && \
     apt-get install -y mongodb-mongosh mongodb-database-tools
