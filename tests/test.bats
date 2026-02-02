@@ -43,12 +43,12 @@ health_checks() {
   assert_success
   assert_output --partial "mongodb.debug"
 
-  run ddev mongosh 'mongodb://db:db@mongo:27017/test?authSource=admin' --quiet --eval 'JSON.stringify(db.getUsers())'
+  run ddev mongosh 'mongodb://db:db@mongo:27017/db?authSource=admin' --quiet --eval 'JSON.stringify(db.getUsers())'
   assert_success
   assert_output --partial '"ok":1'
 
   # Check mongo CLI utils availability in the "web" container
-  run ddev exec "mongosh 'mongodb://db:db@mongo:27017/test?authSource=admin' --quiet --eval 'JSON.stringify(db.getUsers())'"
+  run ddev exec "mongosh 'mongodb://db:db@mongo:27017/db?authSource=admin' --quiet --eval 'JSON.stringify(db.getUsers())'"
   assert_success
   assert_output --partial '"ok":1'
   run ddev exec 'mongodump --version'
