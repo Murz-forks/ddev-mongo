@@ -25,15 +25,9 @@ After installation, make sure to commit the `.ddev` directory to version control
 ## Connection
 
 By default, the database with the name `db` is created. You can connect to it using this connection string:
-```
+
+```text
 mongodb://db:db@mongo/db?authSource=admin
-```
-You can change the default database name, username, and password using env variables:
-```
-MONGO_INITDB_ROOT_USERNAME=db
-MONGO_INITDB_ROOT_PASSWORD=db
-MONGO_INITDB_DATABASE=db
-```
 
 ## Configuration
 
