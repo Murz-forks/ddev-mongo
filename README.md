@@ -28,6 +28,18 @@ By default, the database with the name `db` is created. You can connect to it us
 
 ```text
 mongodb://db:db@mongo/db?authSource=admin
+```
+
+You can change the default database name, username, and password using env variables:
+
+```bash
+ddev dotenv set .ddev/.env.mongo \
+    --mongo-initdb-root-username=db \
+    --mongo-initdb-root-password=db \
+    --mongo-initdb-database=db
+```
+
+If default authentication is not required, see the [Advanced Customization](#advanced-customization) section below.
 
 ## Configuration
 
